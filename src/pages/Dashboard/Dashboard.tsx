@@ -77,16 +77,31 @@ const listing = [
 
 const Quicks = [
   {
-    title : 'Approve Listings',
-    count : 34
+    title: 'Approve Listings',
+    count: 34
   },
   {
-    title : 'Verification Requests',
-    count : 34
+    title: 'Verification Requests',
+    count: 34
   },
   {
-    title : 'View Reports',
-    count : 34
+    title: 'View Reports',
+    count: 34
+  }
+]
+
+
+const system = [
+
+  {
+    title: 'API Status',
+    value: 'Operational'
+  }, {
+    title: "Database",
+    value: "Healthy"
+  }, {
+    title: "Storage",
+    value: "78% Used"
   }
 ]
 
@@ -143,10 +158,10 @@ export default function Dashboard() {
 
 
       <div className="mt-8">
-        <div className="flex gap-x-6 ">
+        <div className="flex gap-y-4 sm:gap-y-2 flex-col lg:flex-row gap-x-6 ">
 
 
-          <div className="bg-white/4 w-2/3 p-6 backdrop-blur-xl rounded-2xl border border-white/5 shadow-2xl overflow-hidden">
+          <div className="bg-white/4 lg:w-2/3 p-6 backdrop-blur-xl rounded-2xl border border-white/5 shadow-2xl overflow-hidden">
 
 
 
@@ -176,7 +191,7 @@ export default function Dashboard() {
                       <div className="text-[#CBD5E1]">
                         {item?.icon}
                       </div>
-                      <span className="text-[12px] font-semibold   capitalize  text-[#CBD5E1]">
+                      <span className="text-[12px] font-semibold   text-[#CBD5E1]">
                         {item?.time}
                       </span>
                     </div>
@@ -190,22 +205,44 @@ export default function Dashboard() {
 
 
 
-          <div className="w-1/3 bg-[#111827] border border-white/10 rounded-2xl px-5.5 py-6.5">
+          <div className="lg:w-1/3 flex flex-col gap-y-6">
+            <div className=" bg-[#111827] h-1/2 border border-white/10 rounded-2xl px-5.5 py-6.5">
 
-           <div className="space-y-3">
-             <h1 className="text-white  text-xl capitalize">Quick Actions</h1>
-            {
-              Quicks?.map((item,key)=>{
-                return <div key={key} className="flex bg-[#1F3A5F] p-4 rounded-2xl justify-between">
+              <div className="space-y-3">
+                <h1 className="text-white  text-xl capitalize">Quick Actions</h1>
+                {
+                  Quicks?.map((item, key) => {
+                    return <div key={key} className="flex bg-[#1F3A5F] p-4 rounded-2xl justify-between">
 
-                  <h1 className="text-[14px] text-white" >{item?.title}</h1>
+                      <h1 className="text-[14px] text-white" >{item?.title}</h1>
 
-                  <p  className="text-[14px] text-white">{item?.count}</p>
-                </div>
-              })
+                      <p className="text-[14px] text-white  bg-[#FFFFFF33] px-2 py-.5 rounded-full">{item?.count}</p>
+                    </div>
+                  })
 
-            }
-           </div>
+                }
+              </div>
+
+            </div>
+
+            <div className="bg-[#111827] h-1/2 border border-white/10 rounded-2xl px-5.5 py-6.5">
+
+              <div className="space-y-3 ">
+                <h1 className="text-white    text-xl capitalize">System Status</h1>
+
+                {
+                  system?.map((item,key)=>{
+                    return <div key={key} className="flex justify-between items-center" >
+
+                      <h1 className="text-sm text-white">{item?.title}</h1>
+
+                      <span className={`px-2 py-1 rounded-sm text-[12px] ${item?.title == "Storage" ? "bg-[#F0B10033] text-[#FDC700]" : "text-[#05DF72] bg-[#00C95033]"}`}>{item?.value}</span>
+                    </div>
+                  })
+                }
+              </div>
+
+            </div>
 
           </div>
 
