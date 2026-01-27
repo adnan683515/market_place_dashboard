@@ -112,9 +112,9 @@ export default function Dashboard() {
 
 
   return (
-    <div className="mt-5 sm:pr-4">
+    <div className="mt-5 ">
 
-      {/*  stats grid */}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 ">
         {statsGrid?.map((item, key) => (
           <div
@@ -161,7 +161,7 @@ export default function Dashboard() {
         <div className="flex gap-y-4 sm:gap-y-2 flex-col lg:flex-row gap-x-6 ">
 
 
-          <div className="bg-white/4 lg:w-2/3 p-6 backdrop-blur-xl rounded-2xl border border-white/5 shadow-2xl overflow-hidden">
+          <div className="bg-white/2 lg:w-2/3 p-6 backdrop-blur-xl rounded-2xl border border-white/5 shadow-2xl overflow-hidden">
 
 
 
@@ -179,7 +179,7 @@ export default function Dashboard() {
                   </div>
 
                   <div className="space-y-1 flex-1">
-                    <h1 className="text-[20px] font-semibold   text-white  transition-colors">
+                    <h1 className="text-[20px] font-semibold   tracking-wider  text-white  ">
                       {item?.title}
                     </h1>
 

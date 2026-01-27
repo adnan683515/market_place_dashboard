@@ -21,14 +21,14 @@ const MainLayout: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const menuItems = [
-    { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard/dashboard' },
-    { icon: Menu, label: 'User Management', path: '/dashboard/products' },
-    { icon: CircleCheck, label: 'Listings', path: '/dashboard/categories' },
-    { icon: Users, label: 'Verification', path: '/dashboard/customers' },
-    { icon: Flag, label: 'Moderation', path: '/dashboard/settings' },
-    { icon: TrendingUp, label: 'Boosted Listings', path: '/dashboard/settings' },
-    { icon: Bell, label: 'Notifications', path: '/dashboard/settings' },
-    { icon: ChartNoAxesColumnIncreasing, label: 'Analytics', path: '/dashboard/settings' },
+    { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
+    { icon: Menu, label: 'User Management', path: '/dashboard/user' },
+    { icon: CircleCheck, label: 'Listings', path: '/dashboard/listing' },
+    { icon: Users, label: 'Verification', path: '/dashboard/verification' },
+    { icon: Flag, label: 'Moderation', path: '/dashboard/content' },
+    { icon: TrendingUp, label: 'Boosted Listings', path: '/dashboard/boosted' },
+    { icon: Bell, label: 'Notifications', path: '/dashboard/notification' },
+    { icon: ChartNoAxesColumnIncreasing, label: 'Analytics', path: '/dashboard/analytics' },
     { icon: Settings, label: 'Settings', path: '/dashboard/settings' },
   ];
 
@@ -57,7 +57,6 @@ const MainLayout: React.FC = () => {
           </>
         )}
       </AnimatePresence>
-
 
       <aside className="hidden lg:flex flex-col w-70 bg-(--side) border-r border p-2.5 sticky top-0 h-screen shrink-0">
         <SidebarContent items={menuItems} />
@@ -93,15 +92,19 @@ const MainLayout: React.FC = () => {
           </div>
         </header>
 
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 sm:mt-5 sm:pr-4 overflow-y-auto">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
             className=""
           >
+
             <Outlet />
+
           </motion.div>
+
+
         </main>
       </div>
     </div>
