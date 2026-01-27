@@ -1,7 +1,10 @@
+import { Statics } from "./Statics";
 
 
 export default function BoostedListing() {
   return (
-    <div>BoostedListing</div>
+    <div>
+      <Statics></Statics>
+    </div>
   )
 }

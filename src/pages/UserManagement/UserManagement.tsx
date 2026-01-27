@@ -178,7 +178,7 @@ const UserManagement: React.FC = () => {
 
 
 
-      <div className="flex flex-col w-full lg:flex-row gap-4 mb-6 items-center bg-[#0B1120]/50 p-4 rounded-2xl border border-white/5 backdrop-blur-sm relative z-50">
+      <div className="flex flex-col w-full lg:flex-row gap-4 mb-6 items-center bg-[#0F172A]/50 p-4 rounded-2xl border border-white/5 backdrop-blur-sm relative z-50">
 
         {/* Search Input */}
         <div className="relative w-full lg:flex-1">
@@ -188,7 +188,7 @@ const UserManagement: React.FC = () => {
           <input
             type="text"
             placeholder="Search by name or email..."
-            className="w-full bg-[#0F172A] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500/50 transition-all"
+            className="w-full bg-[#0B1120] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500/50 transition-all"
           />
         </div>
 
