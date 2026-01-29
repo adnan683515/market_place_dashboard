@@ -13,15 +13,58 @@ import {
   X
 } from 'lucide-react';
 import React, { useState } from 'react';
-import { NavLink, Outlet } from 'react-router';
+import { Link, NavLink, Outlet, useLocation } from 'react-router';
 import logo from '../assets/Logo.png';
 import admin from '../assets/admin.png';
+
+const paths = {
+  "/dashboard": {
+    title: "Dashboard",
+    des: "Welcome back! Here's what's happening",
+  },
+  "/dashboard/user": {
+    title: "User Management",
+    des: "Manage all users, verification status, and permissions.",
+  },
+  "/dashboard/listing": {
+    title: "Listing Management",
+    des: "Manage all users, verification status, and permissions.",
+  },
+  "/dashboard/verification": {
+    title: "Verification Requests",
+    des: "Review and approve verification requests from shops and builders."
+  },
+  "/dashboard/content": {
+    title: "Content Moderation",
+    des: "Review and manage flagged content to maintain community standards."
+  },
+  "/dashboard/boosted": {
+    title: "Boosted Listings",
+    des: "Track and manage all boosted listings and their performance."
+  }
+  , "/dashboard/notification": {
+    title: "Notifications",
+    des: "Stay updated with platform activities and alerts."
+  },
+  "/dashboard/analytics" : {
+    title : "Analytics",
+    des : "Track platform performance and user engagement metrics."
+  },
+  "/dashboard/settings" : {
+    title : "Settings",
+    des : "Manage your admin account and security settings."
+  }
+
+} as const;
 
 const MainLayout: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+
+
+
   const menuItems = [
-    { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
+    { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard', },
     { icon: Menu, label: 'User Management', path: '/dashboard/user' },
     { icon: CircleCheck, label: 'Listings', path: '/dashboard/listing' },
     { icon: Users, label: 'Verification', path: '/dashboard/verification' },
@@ -31,6 +74,14 @@ const MainLayout: React.FC = () => {
     { icon: ChartNoAxesColumnIncreasing, label: 'Analytics', path: '/dashboard/analytics' },
     { icon: Settings, label: 'Settings', path: '/dashboard/settings' },
   ];
+
+
+  const location = useLocation()
+
+  const currentPath = paths[location.pathname as keyof typeof paths];
+
+
+
 
   return (
     <div className="h-screen w-full bg-(--back) flex overflow-hidden">
@@ -72,9 +123,11 @@ const MainLayout: React.FC = () => {
               <Menu size={24} />
             </button>
             <div>
-              <h1 className='text-[16px] sm:text-[32px] text-white font-semibold'>Dashboard</h1>
+              <h1 className='text-[16px] sm:text-[32px] text-white font-semibold'>
+                {currentPath?.title ?? "Dashboard"}
+              </h1>
               <h2 className="hidden sm:block sm:text-[14px] text-[#9CA3AF] capitalize">
-                Welcome back! Here's what's happening.
+                {currentPath?.des ?? "Dashboard"}
               </h2>
             </div>
           </div>
@@ -114,6 +167,10 @@ const MainLayout: React.FC = () => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const SidebarContent = ({ items, onClose }: { items: any[], onClose?: () => void }) => (
+
+
+
+
   <div className="flex flex-col h-full">
     <div className="mb-4 px-2 flex justify-between items-center shrink-0">
       <img className='w-[80%] sm:w-full' src={logo} alt="" />
@@ -127,6 +184,7 @@ const SidebarContent = ({ items, onClose }: { items: any[], onClose?: () => void
           key={item.label}
           to={item.path}
           onClick={onClose}
+          // onAuxClick={()=>}
           className={() => `
             flex items-center gap-3 hover:scale-95 text-white px-4 py-3 rounded-xl transition-all leading-2 capitalize sm:text-[20px] group hover:bg-[#1F3A5F] `}
         >
@@ -136,10 +194,12 @@ const SidebarContent = ({ items, onClose }: { items: any[], onClose?: () => void
       ))}
     </nav>
 
-    <div className="pt-4 shrink-0">
+    <div className="pt-4 mb-6 shrink-0">
+     <Link to={'/'}>
+     
       <button className="w-full flex items-center gap-3 px-4 py-2 text-red-500 hover:scale-95 transition duration-700 rounded-xl cursor-pointer border border-red-500 text-[20px]">
         <LogOut size={20} /> Logout
-      </button>
+      </button></Link>
     </div>
   </div>
 );
