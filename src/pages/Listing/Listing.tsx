@@ -1,4 +1,4 @@
-import { CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, Eye, Filter, MoreHorizontal, Search, SquarePen, Trash2, TrendingUp, XCircle } from "lucide-react";
+import { CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, Eye, Filter, MoreHorizontal, Search, Trash2, TrendingUp, XCircle } from "lucide-react";
 import { useState } from "react";
 
 
@@ -238,7 +238,7 @@ export default function Listing() {
                         </>
                       )}
                       <button className="text-white transition-colors"><TrendingUp size={20} /></button>
-                      <button className="text-white transition-colors"><SquarePen size={20} /></button>
+               
                       <button className="text-red-500/70 hover:text-red-500 transition-colors"><Trash2 className="text-[#FF6467]" size={20} /></button>
                     </div>
                   </td>

@@ -16,3 +16,5 @@ export interface Listing {
   views: string;
   reasobBy: string;
 }
+
+

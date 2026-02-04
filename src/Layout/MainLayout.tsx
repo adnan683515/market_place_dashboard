@@ -46,22 +46,20 @@ const paths = {
     title: "Notifications",
     des: "Stay updated with platform activities and alerts."
   },
-  "/dashboard/analytics" : {
-    title : "Analytics",
-    des : "Track platform performance and user engagement metrics."
+  "/dashboard/analytics": {
+    title: "Analytics",
+    des: "Track platform performance and user engagement metrics."
   },
-  "/dashboard/settings" : {
-    title : "Settings",
-    des : "Manage your admin account and security settings."
+  "/dashboard/settings": {
+    title: "Settings",
+    des: "Manage your admin account and security settings."
   }
 
 } as const;
 
 const MainLayout: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-
-
+  const [click, setClick] = useState<string>("/dashboard")
 
   const menuItems = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard', },
@@ -81,7 +79,7 @@ const MainLayout: React.FC = () => {
   const currentPath = paths[location.pathname as keyof typeof paths];
 
 
-
+  console.log(click)
 
   return (
     <div className="h-screen w-full bg-(--back) flex overflow-hidden">
@@ -103,14 +101,14 @@ const MainLayout: React.FC = () => {
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
               className="fixed top-0 left-0 bottom-0 w-70 bg-(--side) z-70 shadow-2xl sm:p-6 lg:hidden"
             >
-              <SidebarContent items={menuItems} onClose={() => setIsSidebarOpen(false)} />
+              <SidebarContent click={click} setClick={setClick} items={menuItems} onClose={() => setIsSidebarOpen(false)} />
             </motion.aside>
           </>
         )}
       </AnimatePresence>
 
       <aside className="hidden lg:flex flex-col w-70 bg-(--side) border-r border p-2.5 sticky top-0 h-screen shrink-0">
-        <SidebarContent items={menuItems} />
+        <SidebarContent click={click} setClick={setClick} items={menuItems} />
       </aside>
 
 
@@ -164,10 +162,17 @@ const MainLayout: React.FC = () => {
   );
 };
 
+type SidebarContentProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  items: any[]
+  click: string
+  setClick: React.Dispatch<React.SetStateAction<string>>
+  onClose?: () => void
+}
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const SidebarContent = ({ items, onClose }: { items: any[], onClose?: () => void }) => (
 
+
+const SidebarContent = ({ items, click, setClick, onClose, }: SidebarContentProps) => (
 
 
 
@@ -183,10 +188,17 @@ const SidebarContent = ({ items, onClose }: { items: any[], onClose?: () => void
         <NavLink
           key={item.label}
           to={item.path}
-          onClick={onClose}
-          // onAuxClick={()=>}
-          className={() => `
-            flex items-center gap-3 hover:scale-95 text-white px-4 py-3 rounded-xl transition-all leading-2 capitalize sm:text-[20px] group hover:bg-[#1F3A5F] `}
+          onClick={() => {
+            setClick(item.path)
+            onClose?.()
+          }}
+
+          className={`
+  flex items-center gap-3 hover:scale-95 text-white px-4 py-3 rounded-xl
+  transition-all leading-2 capitalize sm:text-[20px] group
+  ${click === item.path ? 'bg-[#1F3A5F]' : ''}
+  hover:bg-[#1F3A5F]
+`}
         >
           <item.icon size={20} className="group-hover:scale-110 transition-transform" />
           {item.label}
@@ -195,11 +207,11 @@ const SidebarContent = ({ items, onClose }: { items: any[], onClose?: () => void
     </nav>
 
     <div className="pt-4 mb-6 shrink-0">
-     <Link to={'/'}>
-     
-      <button className="w-full flex items-center gap-3 px-4 py-2 text-red-500 hover:scale-95 transition duration-700 rounded-xl cursor-pointer border border-red-500 text-[20px]">
-        <LogOut size={20} /> Logout
-      </button></Link>
+      <Link to={'/'}>
+
+        <button className="w-full flex items-center gap-3 px-4 py-2 text-red-500 hover:scale-95 transition duration-700 rounded-xl cursor-pointer border border-red-500 text-[20px]">
+          <LogOut size={20} /> Logout
+        </button></Link>
     </div>
   </div>
 );

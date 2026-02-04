@@ -1,15 +1,16 @@
 import { createBrowserRouter } from "react-router";
-import Login from "../pages/Auth/Login";
 import MainLayout from "../Layout/MainLayout";
-import Dashboard from "../pages/Dashboard/Dashboard";
-import UserManagement from "../pages/UserManagement/UserManagement";
-import Listing from "../pages/Listing/Listing";
-import Verification from "../pages/Verification/Verification";
-import ContentMod from "../pages/Content/ContentMod";
-import BoostedListing from "../pages/Boosted/BoostedListing";
-import Notification from "../pages/Notification/Notification";
 import Analytics from "../pages/AnaLytics/Analytics";
+import ForgetPassword from "../pages/Auth/ForgetPassword";
+import Login from "../pages/Auth/Login";
+import BoostedListing from "../pages/Boosted/BoostedListing";
+import ContentMod from "../pages/Content/ContentMod";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import Listing from "../pages/Listing/Listing";
+import Notification from "../pages/Notification/Notification";
 import SettginsPage from "../pages/SettingsPage/SettginsPage";
+import UserManagement from "../pages/UserManagement/UserManagement";
+import Verification from "../pages/Verification/Verification";
 
 
 
@@ -36,22 +37,26 @@ export const router = createBrowserRouter([
             }, {
                 path: "verification",
                 Component: Verification
-            },{
-                path:"content",
-                Component:ContentMod
-            },{
-                path : "boosted",
-                Component : BoostedListing
-            },{
-                path:"notification",
-                Component : Notification
-            },{
-                path:"analytics",
-                Component : Analytics
-            },{
-                path:"settings",
-                Component : SettginsPage
+            }, {
+                path: "content",
+                Component: ContentMod
+            }, {
+                path: "boosted",
+                Component: BoostedListing
+            }, {
+                path: "notification",
+                Component: Notification
+            }, {
+                path: "analytics",
+                Component: Analytics
+            }, {
+                path: "settings",
+                Component: SettginsPage
             }
         ],
-    },
+    }
+    , {
+        path: "forgetpass",
+        Component: ForgetPassword
+    }
 ]);

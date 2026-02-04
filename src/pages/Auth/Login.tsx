@@ -5,11 +5,13 @@ import { Link } from 'react-router'
 export default function Login() {
 
 
+
+
   return (
-    <div className="bg-[url(/LoginImage.jpeg)] min-h-screen  bg-no-repeat bg-center flex justify-center items-center  bg-cover">
+    <div className="bg-[url(/LoginImage.jpeg)] min-h-screen  bg-no-repeat bg-center p-2  flex justify-center items-center  bg-cover">
 
 
-      <div className="flex items-center justify-center   rounded-4xl">
+      <div className="flex items-center justify-center rounded-4xl">
     
         <div className="bg-[#000000CC] backdrop-blur-sm border border-white/30 shadow-2xl shadow-black space-y-8 px-8 py-10 w-full rounded-4xl  ">
 
@@ -54,9 +56,11 @@ export default function Login() {
 
 
            <div className="flex mt-6 justify-center">
-            <span className="text-sm text-gray-200 hover:text-blue-400 cursor-pointer transition-colors">
+            <Link className=' cursor-pointer' to={'forgetpass'}>
+              <span className="text-sm text-gray-200 hover:text-blue-400 cursor-pointer transition-colors">
               Forgot Password?
-            </span>
+            </span></Link>
+          
           </div>
         </div>
       </div>
