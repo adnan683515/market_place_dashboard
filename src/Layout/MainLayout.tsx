@@ -59,7 +59,7 @@ const paths = {
 
 const MainLayout: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [click, setClick] = useState<string>("/dashboard")
+
 
   const menuItems = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard', },
@@ -79,7 +79,7 @@ const MainLayout: React.FC = () => {
   const currentPath = paths[location.pathname as keyof typeof paths];
 
 
-  console.log(click)
+
 
   return (
     <div className="h-screen w-full bg-(--back) flex overflow-hidden">
@@ -101,14 +101,14 @@ const MainLayout: React.FC = () => {
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
               className="fixed top-0 left-0 bottom-0 w-70 bg-(--side) z-70 shadow-2xl sm:p-6 lg:hidden"
             >
-              <SidebarContent click={click} setClick={setClick} items={menuItems} onClose={() => setIsSidebarOpen(false)} />
+              <SidebarContent location={location.pathname}  items={menuItems} onClose={() => setIsSidebarOpen(false)} />
             </motion.aside>
           </>
         )}
       </AnimatePresence>
 
       <aside className="hidden lg:flex flex-col w-70 bg-(--side) border-r border p-2.5 sticky top-0 h-screen shrink-0">
-        <SidebarContent click={click} setClick={setClick} items={menuItems} />
+        <SidebarContent location={location.pathname}  items={menuItems} />
       </aside>
 
 
@@ -165,14 +165,13 @@ const MainLayout: React.FC = () => {
 type SidebarContentProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   items: any[]
-  click: string
-  setClick: React.Dispatch<React.SetStateAction<string>>
-  onClose?: () => void
+  onClose?: () => void, 
+  location : string,
 }
 
 
 
-const SidebarContent = ({ items, click, setClick, onClose, }: SidebarContentProps) => (
+const SidebarContent = ({ items, onClose, location }: SidebarContentProps) => (
 
 
 
@@ -189,14 +188,13 @@ const SidebarContent = ({ items, click, setClick, onClose, }: SidebarContentProp
           key={item.label}
           to={item.path}
           onClick={() => {
-            setClick(item.path)
             onClose?.()
           }}
 
           className={`
   flex items-center gap-3 hover:scale-95 text-white px-4 py-3 rounded-xl
   transition-all leading-2 capitalize sm:text-[20px] group
-  ${click === item.path ? 'bg-[#1F3A5F]' : ''}
+  ${location === item.path ? 'bg-[#1F3A5F]' : ''}
   hover:bg-[#1F3A5F]
 `}
         >
