@@ -1,6 +1,7 @@
 import { CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, Eye, Filter, MoreHorizontal, Search, Trash2, TrendingUp, XCircle } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router";
+import { WarningToast } from "../../config/type";
 
 
 const ListingArray = [
@@ -144,6 +145,7 @@ export default function Listing() {
                     key={user}
                     onClick={() => {
                       setSelectedUser(user);
+                      WarningToast()
                       setIsUserDropdownOpen(false);
                     }}
                     className="px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 cursor-pointer"
@@ -172,6 +174,7 @@ export default function Listing() {
                     key={status}
                     onClick={() => {
                       setSelectedStatus(status);
+                      WarningToast()
                       setIsStatusDropdownOpen(false);
                     }}
                     className="px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 cursor-pointer"
@@ -245,7 +248,7 @@ export default function Listing() {
                       )}
                       <button className="text-white transition-colors"><TrendingUp size={20} /></button>
 
-                      <button className="text-red-500/70 hover:text-red-500 transition-colors"><Trash2 className="text-[#FF6467]" size={20} /></button>
+                      <button onClick={()=>WarningToast()} className="text-red-500/70 hover:text-red-500 transition-colors"><Trash2 className="text-[#FF6467]" size={20} /></button>
                     </div>
                   </td>
                 </tr>

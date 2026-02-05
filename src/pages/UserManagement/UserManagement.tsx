@@ -1,5 +1,6 @@
 import { Ban, ChevronDown, ChevronLeft, ChevronRight, CircleCheckBig, CircleX, Eye, Filter, Search } from 'lucide-react';
 import React, { useState } from 'react';
+import { WarningToast } from '../../config/type';
 
 
 
@@ -213,6 +214,7 @@ const UserManagement: React.FC = () => {
                     key={user}
                     onClick={() => {
                       setSelectedUser(user);
+                        WarningToast()
                       setIsUserDropdownOpen(false);
                     }}
                     className="px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 cursor-pointer"
@@ -241,6 +243,7 @@ const UserManagement: React.FC = () => {
                     key={status}
                     onClick={() => {
                       setSelectedStatus(status);
+                      WarningToast()
                       setIsStatusDropdownOpen(false);
                     }}
                     className="px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 cursor-pointer"
@@ -315,7 +318,7 @@ const UserManagement: React.FC = () => {
                   <td className="px-6 py-4 text-right">
                     <div className="flex justify-end gap-2  transition-opacity">
                       <button className="p-2 hover:bg-white/10 rounded-lg text-white transition-colors">
-                        <Eye size={20} />
+                        <Eye onClick={WarningToast} size={20} />
                       </button>
                       <button className="p-2 hover:bg-white/10 rounded-lg text-emerald-400 transition-colors">
                         <CircleCheckBig size={20} />
