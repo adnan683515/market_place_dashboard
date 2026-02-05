@@ -1,5 +1,6 @@
 import { CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, Eye, Filter, MoreHorizontal, Search, Trash2, TrendingUp, XCircle } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router";
 
 
 const ListingArray = [
@@ -230,7 +231,12 @@ export default function Listing() {
                   </td>
                   <td className="px-6 py-5">
                     <div className="flex items-center gap-x-5">
-                      <button className="text-white transition-colors"><Eye size={20} /></button>
+                      <Link to={'/dashboard/listing/:id'}>
+
+                        <button className="text-white transition-colors"><Eye className=" cursor-pointer" size={20} /></button>
+
+                      </Link>
+
                       {item.status === 'Pending' && (
                         <>
                           <button className="text-emerald-500 hover:text-emerald-400"><CheckCircle2 size={20} /></button>
@@ -238,7 +244,7 @@ export default function Listing() {
                         </>
                       )}
                       <button className="text-white transition-colors"><TrendingUp size={20} /></button>
-               
+
                       <button className="text-red-500/70 hover:text-red-500 transition-colors"><Trash2 className="text-[#FF6467]" size={20} /></button>
                     </div>
                   </td>

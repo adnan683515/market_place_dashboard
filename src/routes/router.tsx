@@ -11,6 +11,7 @@ import Notification from "../pages/Notification/Notification";
 import SettginsPage from "../pages/SettingsPage/SettginsPage";
 import UserManagement from "../pages/UserManagement/UserManagement";
 import Verification from "../pages/Verification/Verification";
+import DetailsOfListing from "../pages/Listing/DetailsOfListing";
 
 
 
@@ -25,7 +26,8 @@ export const router = createBrowserRouter([
         Component: MainLayout,
         children: [
             {
-                index: true,
+                // index: true,
+                path : "/dashboard", 
                 Component: Dashboard,
             },
             {
@@ -34,6 +36,10 @@ export const router = createBrowserRouter([
             }, {
                 path: "listing",
                 Component: Listing
+            }
+            , {
+                path: "/dashboard/listing/:id",
+                Component: DetailsOfListing
             }, {
                 path: "verification",
                 Component: Verification
